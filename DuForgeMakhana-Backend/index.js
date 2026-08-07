@@ -75,10 +75,9 @@ io.on('connection', (socket) => {
 // ─── Middleware ────────────────────────────────────────────────────────────────
 const corsOptions = {
   origin: [
-    'https://www.makhanahealthking.com',
-    'https://makhanahealthking.com',
-    'https://admin.makhanahealthking.com',
-    'https://api.makhanahealthking.com',
+    // DuForge portfolio deployment
+    'https://makhana.duforge.tech',
+    'https://admin.makhana.duforge.tech',
     'http://localhost:3000',
     'http://localhost:3001',
     'http://localhost:3002',

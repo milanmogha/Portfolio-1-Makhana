@@ -1,11 +1,16 @@
 node_modules
 .next
 dist
+dist-ssr
 build
 .git
+.github
 .gitignore
 *.log
 npm-debug.log*
-.env.local
+.env
+.env.*
 Dockerfile
 .dockerignore
+.vscode
+.idea

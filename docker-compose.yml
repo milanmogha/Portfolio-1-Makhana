@@ -1,0 +1,46 @@
+# DuForge Makhana — production stack (runs on the VPS under /Milan/makhana)
+# nginx (system) reverse-proxies the subdomains to the localhost ports below.
+# Images are built & pushed by GitHub Actions to GHCR; the VPS pulls them.
+
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    volumes:
+      - mongo_data:/data/db
+    # Not published to the host — only reachable by the backend on the compose network.
+    expose:
+      - "27017"
+
+  backend:
+    image: ghcr.io/milanmogha/duforgemakhana-backend:latest
+    restart: unless-stopped
+    depends_on:
+      - mongo
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      PORT: "5000"
+      MONGO_URI: mongodb://mongo:27017/makhana
+    ports:
+      - "127.0.0.1:5000:5000"
+
+  customer:
+    image: ghcr.io/milanmogha/duforgemakhana-customer:latest
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+      HOSTNAME: "0.0.0.0"
+    ports:
+      - "127.0.0.1:3000:3000"
+
+  admin:
+    image: ghcr.io/milanmogha/duforgemakhana-admin:latest
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:5173:5173"
+
+volumes:
+  mongo_data:

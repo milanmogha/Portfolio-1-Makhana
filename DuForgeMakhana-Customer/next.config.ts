@@ -29,6 +29,11 @@ const nextConfig: NextConfig = {
         hostname: 'api.makhanahealthking.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'api.makhana.duforge.tech',
+        pathname: '/**',
+      },
     ],
   },
 

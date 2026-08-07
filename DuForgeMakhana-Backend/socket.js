@@ -6,7 +6,10 @@ let io;
 const allowedOrigins = [
   "https://makhanahealthking.com",
   "https://www.makhanahealthking.com",
-  "https://admin.makhanahealthking.com"
+  "https://admin.makhanahealthking.com",
+  // DuForge portfolio deployment
+  "https://makhana.duforge.tech",
+  "https://admin.makhana.duforge.tech"
 ];
 
 export const initSocket = (httpServer) => {
