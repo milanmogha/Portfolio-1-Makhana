@@ -1,0 +1,89 @@
+/* src/css/AdminReviewList.css */
+
+.admin-reviews-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.admin-reviews-title {
+  font-size: 1.75rem;
+  color: #111827;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.admin-reviews-controls {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.back-to-products {
+  background: none;
+  border: none;
+  color: #3b82f6;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-right: auto;
+}
+.back-to-products:hover {
+  text-decoration: underline;
+}
+
+.admin-search-input {
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+  width: 250px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+}
+
+.loading-text,
+.no-reviews-text {
+  text-align: center;
+  color: #555;
+  margin-top: 2rem;
+  font-style: italic;
+}
+
+.admin-reviews-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.admin-reviews-table th,
+.admin-reviews-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+.admin-reviews-table th {
+  background: #f9fafb;
+  color: #111827;
+  font-weight: 600;
+}
+
+.admin-reviews-table tr:hover {
+  background: #f3f4f6;
+}
+
+.admin-reviews-table td:nth-child(3) {
+  /* Rating cell */
+  font-weight: 600;
+  color: #ef4444; /* red for ratings */
+}
+
+.admin-reviews-table td:nth-child(5) {
+  /* Date cell */
+  color: #6b7280;
+  font-size: 0.9rem;
+}

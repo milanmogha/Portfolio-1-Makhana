@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+@import "tailwindcss";
+
+:root {
+  --bg: #f6f0e6;
+  --bg-2: #f1e6d7;
+  --surface: #fffaf3;
+  --surface-strong: #efe3d6;
+  --accent: #b46b2c;
+  --accent-2: #5d7c4f;
+  --accent-soft: #f6d9a7;
+  --ink: #2c1f0f;
+  --muted: #6b5744;
+  --border: #e2d6c5;
+  --shadow: 0 14px 28px rgba(44, 31, 15, 0.12), 0 6px 14px rgba(44, 31, 15, 0.08);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  background: radial-gradient(circle at 20% 20%, rgba(244, 214, 165, 0.15), transparent 30%),
+    radial-gradient(circle at 80% 10%, rgba(93, 124, 79, 0.08), transparent 26%),
+    linear-gradient(135deg, var(--bg), var(--bg-2));
+}
+
+/* any resets */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', 'Manrope', serif;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent-2);
+}
+
+button, .btn {
+  font-family: 'Manrope', system-ui, sans-serif;
+  background: linear-gradient(135deg, var(--accent), #c17a3b);
+  color: #fff;
+  border: 1px solid #d09b63;
+  padding: 0.55rem 1.1rem;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(180, 107, 44, 0.18);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+button:hover, .btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 26px rgba(180, 107, 44, 0.24);
+  filter: saturate(1.05);
+}
+
+button:focus-visible, .btn:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(93, 124, 79, 0.15);
+}
+
+input, select, textarea {
+  font-family: 'Manrope', system-ui, sans-serif;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.65rem 0.75rem;
+  color: var(--ink);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card, .panel, .surface {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+}
+

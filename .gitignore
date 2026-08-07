@@ -1,0 +1,46 @@
+# ── Monorepo-wide safety net ───────────────────────────────
+# Each app (DuForgeMakhana-Admin/Backend/Customer) has its own .gitignore;
+# these patterns are a defense-in-depth backstop so nothing sensitive or
+# heavy is ever committed from anywhere in the tree.
+
+# Dependencies
+**/node_modules/
+**/.pnp
+**/.pnp.*
+
+# Environment / secrets — never commit real env files
+**/.env
+**/.env.*
+!**/.env.example
+
+# Build outputs
+**/dist/
+**/dist-ssr/
+**/.next/
+**/out/
+**/build/
+
+# Caches
+**/.cache/
+**/.vite/
+**/*.tsbuildinfo
+
+# Logs
+**/*.log
+**/logs/
+
+# Keys / certs
+**/*.pem
+**/*.key
+**/.ssh/
+**/serviceAccountKey.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Deploy artifacts
+**/.vercel

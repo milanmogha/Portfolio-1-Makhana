@@ -1,0 +1,24 @@
+# Makhana Health King - SEO Robots Configuration
+# https://www.robotstxt.org/robotstxt.html
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /.next/
+Disallow: /private/
+
+# Google Bot
+User-agent: Googlebot
+Allow: /
+
+# Bing Bot
+User-agent: Bingbot
+Allow: /
+
+# Sitemap
+Sitemap: https://makhanahealthking.com/sitemap.xml
+Sitemap: https://makhanahealthking.com/sitemap-products.xml
+
+# Crawl Delay
+Crawl-delay: 1

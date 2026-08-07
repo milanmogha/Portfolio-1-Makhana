@@ -1,0 +1,194 @@
+/* src/css/Dashboard.css */
+
+
+.bw-dashboard-container {
+  padding: 2rem clamp(1rem, 1vw + 0.5rem, 2.5rem);
+}
+
+.bw-dashboard-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto;
+  gap: 1.5rem;
+}
+
+.bw-grid-card {
+  background: linear-gradient(180deg, rgba(255, 250, 243, 0.94), rgba(241, 230, 215, 0.9));
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow);
+}
+
+.bw-card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  color: var(--accent);
+  letter-spacing: -0.01em;
+}
+
+/* --- Card Specific Styles & Grid Placement --- */
+.today-sales { grid-column: 1 / 3; grid-row: 1; }
+.top-products { grid-column: 3 / 4; grid-row: 1 / 3; }
+.customer-fulfilment { grid-column: 1 / 3; grid-row: 2; }
+.earnings { grid-column: 1 / 2; grid-row: 3; }
+.visitor-insights { grid-column: 2 / 4; grid-row: 3; }
+
+/* Today's Sales */
+.bw-sales-cards-container { display: flex; justify-content: space-between; gap: 1.25rem; }
+.bw-sales-card { display: flex; flex-direction: column; flex-grow: 1; padding: 1rem; border-radius: 14px; background: rgba(255, 255, 255, 0.85); border: 1px solid rgba(226, 214, 197, 0.8); box-shadow: 0 10px 24px rgba(44, 31, 15, 0.06); }
+.bw-sales-value { font-size: 1.8rem; font-weight: 800; color: var(--ink); }
+.bw-sales-title { font-size: 0.95rem; color: var(--muted); margin: 4px 0; }
+.bw-sales-change { font-size: 0.85rem; color: var(--accent-2); font-weight: 700; }
+
+/* Top Products */
+.top-products { gap: 1rem; }
+.bw-product-table-header {
+  display: grid;
+  grid-template-columns: 30px 2fr 1.5fr 1fr;
+  gap: 1rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  padding: 0 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.bw-product-list { display: flex; flex-direction: column; gap: 0.8rem; }
+.bw-product-row {
+  display: grid;
+  grid-template-columns: 30px 2fr 1.5fr 1fr;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.4rem 0.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(226, 214, 197, 0.8);
+  background: rgba(255, 255, 255, 0.8);
+}
+.bw-product-number { color: var(--muted); font-weight: 700; }
+.bw-product-name { color: var(--ink); font-weight: 600; font-size: 0.95rem; }
+.no-data { color: var(--muted); margin-top: 1rem; }
+.bw-popularity-bar { width: 100%; height: 8px; background-color: rgba(180, 107, 44, 0.12); border-radius: 999px; overflow: hidden; }
+.bw-popularity-bar > div { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); border-radius: 999px; }
+.bw-sales-percent-box { background-color: rgba(93, 124, 79, 0.12); color: var(--accent-2); font-size: 0.8rem; font-weight: 700; padding: 0.25rem 0.6rem; border-radius: 10px; text-align: center; }
+
+/* Main Chart (Customer Fulfilment) */
+.bw-chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+.bw-view-toggle { display: flex; border: 1px solid rgba(226, 214, 197, 0.9); border-radius: 12px; overflow: hidden; background: rgba(255, 255, 255, 0.85); }
+.bw-toggle-btn { background: transparent; color: var(--muted); border: none; border-left: 1px solid rgba(226, 214, 197, 0.8); padding: 0.45rem 0.95rem; font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: all 0.2s ease; }
+.bw-toggle-btn:first-child { border-left: none; }
+.bw-toggle-btn.active { background: linear-gradient(135deg, var(--accent), #c17a3b); color: #fff; box-shadow: 0 10px 20px rgba(180, 107, 44, 0.2); }
+
+/* Earnings Card */
+.earnings { justify-content: center; align-items: center; text-align: center; gap: 0.5rem; }
+.bw-earnings-total { font-size: 2.6rem; font-weight: 800; margin: 0; color: var(--ink); }
+.bw-earnings-subtitle { color: var(--muted); font-size: 0.95rem; margin-top: 0.35rem; }
+
+/* Loading / Error States */
+.bw-dashboard-loading, .bw-dashboard-error { text-align: center; padding: 4rem; font-size: 1.2rem; color: var(--muted); width: 100vw; }
+.bw-dashboard-error { color: #b22f2f; }
+
+/* Responsive Grid */
+@media (max-width: 1200px) {
+  .bw-dashboard-grid { grid-template-columns: 1fr 1fr; }
+  .today-sales, .customer-fulfilment, .visitor-insights { grid-column: 1 / 3; }
+  .top-products { grid-column: 1 / 2; grid-row: 2; }
+  .earnings { grid-column: 2 / 3; grid-row: 2; }
+}
+@media (max-width: 768px) {
+  .bw-dashboard-container { padding: 1.1rem; }
+  .bw-dashboard-grid { grid-template-columns: 1fr; }
+  .today-sales, .top-products, .customer-fulfilment, .earnings, .visitor-insights {
+      grid-column: 1;
+      grid-row: auto;
+  }
+  .bw-sales-cards-container { flex-direction: column; gap: 1rem; }
+  .bw-dashboard-grid {
+    row-gap: 1.5rem;
+  }
+  .bw-grid-card {
+    padding: 1.1rem 0.8rem 1.2rem 0.8rem;
+    margin-bottom: 1.5rem;
+    border-radius: 18px;
+    min-width: 0;
+    box-shadow: 0 6px 24px rgba(44,31,15,0.10);
+    background: linear-gradient(180deg, #fffaf3 90%, #f1e6d7 100%);
+    transition: box-shadow 0.18s;
+  }
+  .bw-grid-card:active,
+  .bw-grid-card:focus {
+    box-shadow: 0 10px 32px rgba(44,31,15,0.16);
+  }
+  .bw-card-title {
+    font-size: 1.08rem;
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.01em;
+  }
+  .bw-product-table-header, .bw-product-row {
+    font-size: 1.01rem;
+    gap: 0.5rem;
+    padding: 0.3rem 0.2rem;
+  }
+  .bw-product-table-header {
+    display: none;
+  }
+  .bw-product-list {
+    gap: 0.5rem;
+  }
+  .bw-product-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    background: #fff;
+    margin-bottom: 0.7rem;
+    padding: 0.7rem 0.6rem;
+    box-shadow: 0 2px 8px rgba(44,31,15,0.06);
+  }
+  .bw-product-row > span {
+    margin-bottom: 0.2rem;
+    font-size: 1em;
+  }
+  .bw-popularity-bar {
+    width: 100%;
+    margin: 0.2rem 0 0.3rem 0;
+  }
+  .bw-sales-percent-box {
+    align-self: flex-end;
+    margin-top: 0.2rem;
+  }
+  .bw-dashboard-loading, .bw-dashboard-error {
+    padding: 2rem 0.5rem;
+    font-size: 1.08rem;
+  }
+  /* Make charts horizontally scrollable if overflow */
+  .bw-grid-card .recharts-responsive-container {
+    min-width: 350px;
+    width: 100vw !important;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  .bw-earnings-total {
+    font-size: 2.1rem;
+  }
+  .bw-earnings-subtitle {
+    font-size: 0.98rem;
+  }
+/* End of file: fixed stray closing brace and merged duplicate rules */
+
+@media (max-width: 480px) {
+  .bw-dashboard-container {
+    padding: 0.4rem;
+  }
+  .bw-grid-card {
+    padding: 0.7rem 0.3rem;
+    border-radius: 10px;
+  }
+  .bw-card-title {
+    font-size: 0.98rem;
+  }
+}
+}

@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  background: transparent;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.page-shell {
+  min-height: 100vh;
+  padding: 1.5rem;
+}
+
+.glass-panel {
+  background: rgba(255, 250, 243, 0.82);
+  border: 1px solid rgba(226, 214, 197, 0.9);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}

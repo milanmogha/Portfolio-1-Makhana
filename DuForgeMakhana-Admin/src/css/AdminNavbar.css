@@ -1,0 +1,213 @@
+/* ------------------------------
+   VISIBILITY CONTROL
+------------------------------ */
+
+/* Default (Desktop): show desktop menu, hide mobile */
+.desktop-only {
+  display: flex;
+}
+
+.mobile-only {
+  display: none;
+}
+
+/* Mobile / Tablet (<1000px): hide desktop, show mobile */
+@media (max-width: 1000px) {
+  .desktop-only {
+    display: none !important;
+  }
+  .mobile-only {
+    display: block !important;
+  }
+}
+
+/* ------------------------------
+   NAVBAR BASE STYLES
+------------------------------ */
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(120deg, rgba(255, 250, 243, 0.92), rgba(246, 217, 167, 0.4));
+  padding: 0.9rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 14px 28px rgba(44, 31, 15, 0.08);
+}
+
+.navbar__nav {
+  width: 100%;
+  max-width: 1240px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+/* ------------------------------
+   DESKTOP NAV LINKS
+------------------------------ */
+
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.navbar__link {
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 12px;
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+  border: 1px solid transparent;
+}
+
+.navbar__link:hover, .navbar__link.active {
+  color: var(--ink);
+  background: rgba(244, 214, 165, 0.35);
+  border-color: rgba(180, 107, 44, 0.2);
+  box-shadow: 0 10px 22px rgba(180, 107, 44, 0.18);
+  transform: translateY(-1px);
+}
+
+.navbar__logout {
+  background: linear-gradient(135deg, #b22f2f, #c24a3f);
+  color: white;
+  border: 1px solid rgba(194, 74, 63, 0.35);
+  padding: 8px 14px;
+  font-weight: 700;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: 0.15s;
+  box-shadow: 0 12px 24px rgba(194, 74, 63, 0.2);
+}
+
+.navbar__logout:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+/* ------------------------------
+   MOBILE MENU BUTTON (⋮)
+------------------------------ */
+
+.menu-button {
+  font-size: 1rem;
+  background: rgba(255, 250, 243, 0.7);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  color: var(--ink);
+  padding: 6px 10px;
+  border-radius: 12px;
+  transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: var(--shadow);
+}
+
+.menu-button:hover {
+  background: rgba(246, 217, 167, 0.6);
+  transform: translateY(-1px);
+}
+
+/* ------------------------------
+   FLOATING DROPDOWN MENU (MOBILE)
+------------------------------ */
+
+.floating-menu {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+
+  width: 260px;
+  background: linear-gradient(140deg, rgba(255, 250, 243, 0.96), rgba(246, 217, 167, 0.82));
+  border-radius: 18px;
+  padding: 12px 0;
+  border: 1px solid rgba(226, 214, 197, 0.9);
+
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+  animation: fadeSlide 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 300;
+  overflow: hidden;
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ------------------------------
+   FLOATING MENU ITEMS
+------------------------------ */
+
+.f-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 14px 20px;
+  margin: 3px 8px;
+  border-radius: 12px;
+
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.94rem;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid transparent;
+}
+
+/* Add subtle divider between items */
+.f-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+  right: 20px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #e5e7eb, transparent);
+  opacity: 0.5;
+}
+
+/* Hover effect */
+.f-item:hover {
+  background: linear-gradient(135deg, rgba(246, 217, 167, 0.35), rgba(93, 124, 79, 0.12));
+  border-color: rgba(180, 107, 44, 0.2);
+  transform: translateX(4px);
+  box-shadow: var(--shadow);
+}
+
+/* Danger (Logout) */
+.f-item.danger {
+  color: #b22f2f;
+  font-weight: 700;
+}
+
+.f-item.danger:hover {
+  background: linear-gradient(135deg, rgba(194, 74, 63, 0.12), rgba(246, 217, 167, 0.35));
+  border-color: rgba(194, 74, 63, 0.25);
+  box-shadow: var(--shadow);
+}

@@ -1,0 +1,387 @@
+/* ============================================================
+   AUTH PAGES (Login / Signup) — warm, self-contained redesign
+   Shared by Login.tsx and Signup.tsx (same class structure).
+   ============================================================ */
+
+.login-page-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* No forced 100vh — the global navbar/footer already frame the page, so a
+     full-viewport wrapper just left large empty gaps above and below the card. */
+  padding: clamp(1.5rem, 4vw, 2.75rem) 1rem;
+  background:
+    radial-gradient(880px 480px at 10% -10%, rgba(217, 154, 43, 0.22), transparent 60%),
+    radial-gradient(760px 520px at 105% 110%, rgba(44, 30, 20, 0.18), transparent 62%),
+    linear-gradient(160deg, var(--background-primary) 0%, var(--background-secondary) 58%, #ece2d0 100%);
+  font-family: var(--font-body);
+}
+
+/* Decorative soft blobs (no external images) */
+.login-background {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+.background-pattern {
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(280px 280px at 20% 30%, rgba(217, 154, 43, 0.18), transparent 70%),
+    radial-gradient(320px 320px at 80% 70%, rgba(201, 101, 69, 0.14), transparent 70%),
+    radial-gradient(240px 240px at 60% 20%, rgba(122, 77, 36, 0.12), transparent 70%);
+  filter: blur(20px);
+  animation: floatPattern 26s ease-in-out infinite;
+}
+@keyframes floatPattern {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-24px, -16px) scale(1.05); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .background-pattern { animation: none; }
+}
+.login-background::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(1px 1px at 25% 35%, rgba(122, 77, 36, 0.10) 50%, transparent 51%),
+    radial-gradient(1px 1px at 70% 60%, rgba(122, 77, 36, 0.08) 50%, transparent 51%);
+  background-size: 26px 26px, 34px 34px;
+  opacity: 0.6;
+}
+
+/* ===== Card ===== */
+.login-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 440px;
+}
+.login-card-premium {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface-primary);
+  border: 1px solid var(--border-default);
+  border-radius: 20px;
+  box-shadow:
+    0 24px 60px rgba(44, 30, 20, 0.16),
+    0 6px 18px rgba(44, 30, 20, 0.08);
+  padding: clamp(1.5rem, 3.5vw, 2rem) clamp(1.25rem, 3.5vw, 1.8rem);
+}
+.login-card-premium::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: var(--gradient-gold, linear-gradient(90deg, #E4AF4E, #D99A2B));
+}
+
+/* ===== Header ===== */
+.login-header {
+  text-align: center;
+  margin-bottom: 1.3rem;
+}
+/* Lotus badge (makhana = lotus seeds) rendered without extra markup */
+.login-header::before {
+  content: '🪷';
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 0.6rem;
+  border-radius: 50%;
+  background: linear-gradient(150deg, #2C1E14, #180F07);
+  font-size: 24px;
+  box-shadow: 0 8px 20px rgba(44, 30, 20, 0.28);
+}
+.brand-logo,
+.brand-title {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: clamp(1.35rem, 4vw, 1.7rem);
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  color: var(--brand-primary);
+  margin: 0;
+}
+.brand-subtitle {
+  display: block;
+  margin-top: 0.35rem;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent-saffron);
+}
+
+.title {
+  margin: 0 0 0.25rem;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+.subtitle {
+  margin: 0 0 1.1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* ===== Error ===== */
+.error {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: color-mix(in srgb, var(--error) 8%, var(--surface-primary));
+  color: #9f1d1d;
+  border: 1px solid color-mix(in srgb, var(--error) 28%, transparent);
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  margin-bottom: 1.1rem;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+/* ===== Form ===== */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+}
+.input-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: var(--text-secondary);
+  margin: 0 0 0.35rem;
+}
+.premium-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.85rem;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 12px;
+  background: var(--surface-soft);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-fast) var(--ease-out),
+              background var(--dur-fast) var(--ease-out);
+}
+.premium-input::placeholder { color: var(--text-muted); }
+.premium-input:focus {
+  border-color: var(--accent-saffron);
+  background: var(--surface-primary);
+  box-shadow: 0 0 0 3px rgba(217, 154, 43, 0.18);
+}
+/* Segmented OTP boxes */
+.otp-boxes {
+  display: flex;
+  justify-content: center;
+  gap: 0.55rem;
+  margin-bottom: 1.1rem;
+}
+.otp-box {
+  width: 46px;
+  height: 54px;
+  padding: 0;
+  text-align: center;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 12px;
+  background: var(--surface-soft);
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 700;
+  outline: none;
+  transition: border-color var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-fast) var(--ease-out),
+              background var(--dur-fast) var(--ease-out);
+}
+.otp-box:focus {
+  border-color: var(--accent-saffron);
+  background: var(--surface-primary);
+  box-shadow: 0 0 0 3px rgba(217, 154, 43, 0.18);
+}
+.otp-box:disabled { opacity: 0.6; }
+@media (max-width: 400px) {
+  .otp-boxes { gap: 0.4rem; }
+  .otp-box { width: 40px; height: 48px; font-size: 1.2rem; }
+}
+
+/* ===== Buttons ===== */
+.form-actions { margin-top: 0.3rem; }
+.premium-button {
+  width: 100%;
+  padding: 0.95rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: transform var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-fast) var(--ease-out),
+              filter var(--dur-fast) var(--ease-out);
+}
+.premium-button.primary {
+  background: var(--gradient-gold, linear-gradient(135deg, #E4AF4E, #D99A2B));
+  color: #201308;
+  box-shadow: 0 10px 24px rgba(217, 154, 43, 0.32);
+}
+.premium-button.primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(217, 154, 43, 0.4);
+}
+.premium-button.primary:active:not(:disabled) { transform: translateY(0); }
+.premium-button:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.premium-button.link {
+  width: auto;
+  padding: 0.5rem 0.9rem;
+  background: transparent;
+  color: var(--text-primary);
+  border: 1.5px solid var(--border-strong);
+  font-weight: 600;
+}
+.premium-button.link:hover {
+  border-color: var(--accent-saffron);
+  color: #7A4D24;
+}
+
+/* Plain text links (resend, sign-up prompt) */
+.auth-form .link {
+  background: none;
+  border: none;
+  color: #7A4D24;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0.5rem 0.4rem;
+}
+.auth-form .link:disabled { color: var(--text-muted); cursor: not-allowed; }
+.auth-form p { margin: 0.9rem 0 0; text-align: center; font-size: 0.9rem; color: var(--text-secondary); }
+.auth-form p a {
+  color: #7A4D24;
+  font-weight: 700;
+  text-decoration: none;
+}
+.auth-form p a:hover { text-decoration: underline; }
+
+/* ===== OTP success animation ===== */
+.otp-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.4rem 0 0.6rem;
+}
+.otp-success-visual {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 150px;
+  height: 150px;
+}
+.otp-success-aura {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(47, 133, 90, 0.38), rgba(47, 133, 90, 0.10) 45%, transparent 70%);
+  filter: blur(4px);
+  animation: otp-aura 1.8s ease-in-out infinite;
+}
+.otp-success-badge {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 84px;
+  height: 84px;
+  border-radius: 22px;
+  border: 2.5px solid var(--success);
+  background: color-mix(in srgb, var(--success) 10%, var(--surface-primary));
+  box-shadow: 0 0 24px rgba(47, 133, 90, 0.35), inset 0 0 12px rgba(47, 133, 90, 0.12);
+  transform: scale(0);
+  animation: otp-badge-pop 0.5s var(--ease-spring) forwards;
+}
+.otp-success-check {
+  width: 46px;
+  height: 46px;
+  overflow: visible;
+}
+.otp-success-check path {
+  fill: none;
+  stroke: var(--success);
+  stroke-width: 4.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: otp-check-draw 0.45s var(--ease-out) 0.32s forwards;
+}
+.otp-success-title {
+  margin: 0.6rem 0 0.25rem;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  opacity: 0;
+  animation: otp-fade-up 0.4s var(--ease-out) 0.5s forwards;
+}
+.otp-success-sub {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  opacity: 0;
+  animation: otp-fade-up 0.4s var(--ease-out) 0.62s forwards;
+}
+
+@keyframes otp-badge-pop {
+  0% { transform: scale(0); }
+  60% { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+@keyframes otp-check-draw {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes otp-aura {
+  0%, 100% { transform: scale(0.9); opacity: 0.65; }
+  50% { transform: scale(1.12); opacity: 1; }
+}
+@keyframes otp-fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .otp-success-aura { animation: none; }
+  .otp-success-badge { transform: scale(1); animation: none; }
+  .otp-success-check path { stroke-dashoffset: 0; animation: none; }
+  .otp-success-title,
+  .otp-success-sub { opacity: 1; animation: none; }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 480px) {
+  .login-card-premium {
+    padding: 1.8rem 1.3rem;
+    border-radius: 18px;
+  }
+}

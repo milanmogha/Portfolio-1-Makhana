@@ -1,0 +1,87 @@
+/* ============================================================
+   CATEGORIES PAGE
+   Reached via the "Shop" tab of the mobile bottom nav.
+   ============================================================ */
+
+.categories-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: clamp(1.25rem, 4vw, 2.5rem) clamp(1rem, 4vw, 2rem) 2rem;
+}
+
+/* Quick-action tiles (All Products / Build Your Box) */
+.categories-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(0.7rem, 2.5vw, 1rem);
+  margin: 0 0 clamp(1.25rem, 4vw, 2rem);
+}
+.categories-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 64px;
+  padding: 0 1rem;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 700;
+  text-decoration: none;
+  color: #fff;
+  transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+.categories-action svg { font-size: 1.15rem; }
+.categories-action:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.categories-action--primary { background: var(--gradient-brand, var(--brand-primary)); }
+.categories-action--accent { background: var(--accent-terracotta); }
+
+/* Category grid */
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(0.7rem, 3vw, 1.25rem);
+}
+@media (min-width: 620px) {
+  .categories-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.categories-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--surface-primary);
+  border: 1px solid var(--border-default);
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+.categories-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+.categories-card-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--surface-soft);
+}
+.categories-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0.7rem 0.85rem 0.85rem;
+}
+.categories-card-name {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.categories-card-count {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}

@@ -1,0 +1,224 @@
+/* src/components/FilterSidebar.css */
+
+.filter-sidebar {
+  width: 240px;
+  padding-right: 2rem;
+  border-right: 1px solid var(--border-color);
+  font-family: var(--font-body);
+  flex-shrink: 0;
+}
+
+.filter-sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.filter-sidebar h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0;
+  color: var(--color-text-main);
+  font-family: var(--font-heading);
+}
+
+.filter-clear-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-primary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: var(--radius-sm);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.filter-clear-btn:hover:not(:disabled) {
+  background-color: rgba(23, 63, 53, 0.08);
+  color: var(--color-primary-dark);
+}
+
+.filter-clear-btn:disabled {
+  color: var(--color-text-light);
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.filter-group {
+  margin-bottom: 2rem;
+}
+
+.filter-group h4 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  margin-bottom: 0.9rem;
+  color: var(--color-text-main);
+  font-family: var(--font-heading);
+}
+
+.price-slider {
+  width: 100%;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  background: linear-gradient(
+    to right,
+    var(--color-primary, #173F35) 0%,
+    var(--color-primary, #173F35) var(--fill, 100%),
+    #e5e7eb var(--fill, 100%),
+    #e5e7eb 100%
+  );
+  border-radius: 999px;
+  outline: none;
+  transition: background 0.05s linear;
+}
+
+.price-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border: 2px solid var(--color-primary, #173F35);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  transition: transform 0.1s ease;
+}
+
+.price-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.price-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border: 2px solid var(--color-primary, #173F35);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.price-label {
+  margin-top: 0.6rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  font-weight: 500;
+}
+
+.price-label strong {
+  color: var(--color-text-main);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* Custom checkbox row — hides the native control, draws a brand-styled box. */
+.filter-checkbox-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.filter-checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  cursor: pointer;
+  user-select: none;
+  font-size: 0.9rem;
+  color: var(--color-text-body);
+  padding: 2px 0;
+  transition: color 0.15s ease;
+}
+
+.filter-checkbox-row:hover {
+  color: var(--color-primary);
+}
+
+.filter-checkbox-row input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+}
+
+.filter-checkbox-box {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 4px;
+  background: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  position: relative;
+}
+
+.filter-checkbox-box::after {
+  content: '';
+  width: 9px;
+  height: 5px;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(-45deg) translateY(-1px);
+  opacity: 0;
+  transition: opacity 0.1s ease;
+}
+
+.filter-checkbox-row input[type="checkbox"]:checked + .filter-checkbox-box {
+  background-color: var(--color-primary, #173F35);
+  border-color: var(--color-primary, #173F35);
+}
+
+.filter-checkbox-row input[type="checkbox"]:checked + .filter-checkbox-box::after {
+  opacity: 1;
+}
+
+.filter-checkbox-row input[type="checkbox"]:focus-visible + .filter-checkbox-box {
+  outline: 2px solid var(--color-primary, #173F35);
+  outline-offset: 2px;
+}
+
+.filter-checkbox-label {
+  flex: 1;
+}
+
+/* Locked-category pill (shown when the URL pins a single category). */
+.filter-locked-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(23, 63, 53, 0.08);
+  border: 1px solid rgba(23, 63, 53, 0.2);
+  color: var(--color-primary, #173F35);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 999px;
+}
+
+.filter-locked-pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-primary, #173F35);
+}

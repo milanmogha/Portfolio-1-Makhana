@@ -1,0 +1,459 @@
+/* ============================================================
+   MAKHANA HEALTH KING — DESIGN SYSTEM
+   Foundation layer: tokens, base styles, motion & 3D utilities.
+   Every page stylesheet builds on the variables defined here.
+   ============================================================ */
+
+:root {
+  /* ============ PRANA 3D COMMERCE — CORE TOKENS ============ */
+
+  /* Backgrounds & surfaces */
+  --background-primary: #FAF7F0;
+  --background-secondary: #F3EBDD;
+  --surface-primary: #FFFFFF;
+  --surface-soft: #F8F4EC;
+
+  /* Brand */
+  --brand-primary: #173F35;
+  --brand-primary-hover: #0F3028;
+  --brand-secondary: #527A63;
+
+  /* Accents */
+  --accent-saffron: #D99A2B;
+  --accent-pistachio: #A8B98A;
+  --accent-terracotta: #C96545;
+  --accent-pearl: #EEE7DA;
+
+  /* Text */
+  --text-primary: #20231F;
+  --text-secondary: #6B7068;
+  --text-muted: #969B93;
+
+  /* Borders */
+  --border-default: #E8E5DD;
+  --border-strong: #D8D3C8;
+
+  /* Status */
+  --success: #2F855A;
+  --warning: #D99A2B;
+  --error: #C94C4C;
+
+  /* Dark sections (footer, utility bar) */
+  --dark-primary: #0D211C;
+  --dark-secondary: #132C25;
+
+  /* ============ SEMANTIC LAYER ============ */
+  --action-primary-bg: var(--brand-primary);
+  --action-primary-bg-hover: var(--brand-primary-hover);
+  --action-primary-fg: #FFFFFF;
+  --price-fg: var(--text-primary);
+  --price-compare-fg: var(--text-muted);
+  --discount-fg: var(--success);
+  --badge-sale-bg: var(--accent-terracotta);
+  --badge-new-bg: var(--accent-pistachio);
+  --stock-in-fg: var(--success);
+  --stock-low-fg: var(--warning);
+  --stock-out-fg: var(--error);
+  --card-bg: var(--surface-primary);
+  --card-border: var(--border-default);
+  --header-bg: var(--surface-primary);
+  --utility-bar-bg: var(--dark-primary);
+  --footer-bg: var(--dark-primary);
+
+  /* Gradients */
+  --gradient-brand: linear-gradient(135deg, #173F35 0%, #2C5A4B 55%, #527A63 100%);
+  --gradient-gold: linear-gradient(135deg, #E4AF4E 0%, #D99A2B 100%);
+  --gradient-hero: radial-gradient(1200px 600px at 80% -10%, rgba(217, 154, 43, 0.14), transparent 60%),
+                   radial-gradient(900px 500px at -10% 110%, rgba(82, 122, 99, 0.12), transparent 60%);
+
+  /* ---------- Typography ---------- */
+  --font-heading: var(--font-manrope, 'Manrope'), 'Segoe UI', sans-serif;
+  --font-body: var(--font-inter, 'Inter'), 'Segoe UI', sans-serif;
+
+  /* Commerce-compact type scale */
+  --text-xs: 0.75rem;    /* 12 */
+  --text-sm: 0.8125rem;  /* 13 */
+  --text-base: 0.9375rem;/* 15 */
+  --text-md: 1.0625rem;  /* 17 */
+  --text-lg: 1.25rem;    /* 20 */
+  --text-xl: 1.625rem;   /* 26 */
+  --text-2xl: 2.125rem;  /* 34 */
+  --text-hero: 2.75rem;  /* 44 */
+
+  /* ---------- Shape ---------- */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-full: 9999px;
+
+  /* ---------- Elevation (forest-tinted) ---------- */
+  --shadow-sm: 0 2px 4px rgba(23, 63, 53, 0.08);
+  --shadow-md: 0 6px 16px rgba(23, 63, 53, 0.10);
+  --shadow-lg: 0 14px 34px rgba(23, 63, 53, 0.14);
+  --shadow-xl: 0 24px 60px rgba(23, 63, 53, 0.18);
+  --shadow-gold: 0 8px 24px rgba(217, 154, 43, 0.35);
+
+  /* ---------- Motion ---------- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 180ms;
+  --dur-med: 350ms;
+  --dur-slow: 600ms;
+
+  /* ============ LEGACY ALIASES (transition only — remove Phase 17) ============
+     Older page stylesheets still reference the pre-PRANA variable names. */
+  --color-primary: var(--brand-primary);
+  --color-primary-dark: var(--brand-primary-hover);
+  --color-primary-light: var(--brand-secondary);
+  --color-secondary: var(--accent-saffron);
+  --color-secondary-dark: #B9812F;
+  --color-accent: var(--brand-secondary);
+  --color-bg-main: var(--background-primary);
+  --color-bg-white: var(--surface-primary);
+  --color-bg-light: var(--surface-soft);
+  --color-bg-glass: rgba(250, 247, 240, 0.72);
+  --color-text-main: var(--brand-primary);
+  --color-text-body: var(--text-primary);
+  --color-text-light: var(--text-secondary);
+  --color-text-white: #FFFFFF;
+  --border-color: var(--border-default);
+  --border-focus: var(--brand-primary);
+  --color-red: var(--error);
+  --color-success: var(--success);
+}
+
+/* ============ FLAVOR THEME LAYER ============
+   Apply data-flavor on a section root; components read only --flavor-*. */
+[data-flavor] {
+  transition: background-color 0.45s var(--ease-out), color 0.45s var(--ease-out);
+}
+[data-flavor="classic"]        { --flavor-accent: var(--accent-pearl);      --flavor-deep: var(--brand-primary); --flavor-bg: #F6F1E7; }
+[data-flavor="peri-peri"]      { --flavor-accent: var(--accent-terracotta); --flavor-deep: #8F3B24;              --flavor-bg: #F6E9E2; }
+[data-flavor="pudina"]         { --flavor-accent: #6E9A72;                  --flavor-deep: var(--brand-primary); --flavor-bg: #EAF1E6; }
+[data-flavor="cheese"]         { --flavor-accent: var(--accent-saffron);    --flavor-deep: #9A6D14;              --flavor-bg: #F9F0DC; }
+[data-flavor="himalayan-salt"] { --flavor-accent: #D8A8A0;                  --flavor-deep: #7A5350;              --flavor-bg: #F7ECEA; }
+[data-flavor="tangy-masala"]   { --flavor-accent: #D97B2B;                  --flavor-deep: #8F4A14;              --flavor-bg: #F8EDDF; }
+[data-flavor="caramel"]        { --flavor-accent: #B9812F;                  --flavor-deep: #5C3D1E;              --flavor-bg: #F5EBDC; }
+
+/* ============================================================
+   BASE
+   ============================================================ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background-color: var(--color-bg-main);
+  color: var(--color-text-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-text-main);
+  font-weight: 700;
+}
+
+::selection {
+  background: var(--color-secondary);
+  color: var(--color-primary-dark);
+}
+
+/* Slim brand scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-bg-main); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--color-primary-light), var(--color-primary));
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-bg-main);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-secondary-dark);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+img { max-width: 100%; }
+
+/* Skip link — visible only on keyboard focus */
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 12px;
+  z-index: 3000;
+  padding: 0.7rem 1.2rem;
+  background: var(--brand-primary);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  text-decoration: none;
+  transition: top var(--dur-fast) var(--ease-out);
+}
+.skip-link:focus-visible { top: 12px; }
+
+button { font-family: var(--font-body); }
+button:disabled { cursor: not-allowed; opacity: 0.65; }
+
+.error {
+  color: var(--color-red);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* ============================================================
+   BUTTON SYSTEM
+   ============================================================ */
+
+.mk-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.9rem;
+  border: none;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-fast) var(--ease-out),
+              background-color var(--dur-fast) var(--ease-out);
+  transform: translateZ(0);
+}
+
+.mk-btn-primary {
+  background: var(--gradient-brand);
+  color: var(--color-text-white);
+  box-shadow: var(--shadow-md);
+}
+.mk-btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.mk-btn-primary:active { transform: translateY(0) scale(0.98); }
+
+.mk-btn-gold {
+  background: var(--gradient-gold);
+  color: var(--color-primary-dark);
+  box-shadow: var(--shadow-gold);
+}
+.mk-btn-gold:hover { transform: translateY(-2px); filter: brightness(1.05); }
+.mk-btn-gold:active { transform: translateY(0) scale(0.98); }
+
+.mk-btn-ghost {
+  background: transparent;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary);
+}
+.mk-btn-ghost:hover { background: var(--color-primary); color: var(--color-text-white); }
+
+/* Sheen sweep on hover */
+.mk-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.35) 50%, transparent 60%);
+  transform: translateX(-120%);
+  transition: transform var(--dur-slow) var(--ease-out);
+  pointer-events: none;
+}
+.mk-btn:hover::after { transform: translateX(120%); }
+
+/* ============================================================
+   SURFACES
+   ============================================================ */
+
+.glass {
+  background: var(--color-bg-glass);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.mk-card {
+  background: var(--color-bg-white);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--dur-med) var(--ease-out), box-shadow var(--dur-med) var(--ease-out);
+}
+.mk-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+
+/* ============================================================
+   3D UTILITIES
+   .tilt-wrap gives perspective; .tilt reacts to --rx/--ry/--gx/--gy
+   set by the useTilt hook.
+   ============================================================ */
+
+.tilt-wrap { perspective: 900px; }
+
+.tilt {
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateZ(0);
+  transition: transform var(--dur-med) var(--ease-out);
+  will-change: transform;
+}
+.tilt.tilting { transition: transform 80ms linear; }
+
+/* Pointer-following glare highlight */
+.tilt .tilt-glare {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(360px circle at var(--gx, 50%) var(--gy, 50%),
+              rgba(255, 255, 255, 0.28), transparent 55%);
+  opacity: 0;
+  transition: opacity var(--dur-med) var(--ease-out);
+  pointer-events: none;
+  z-index: 3;
+}
+.tilt.tilting .tilt-glare { opacity: 1; }
+
+/* Elements that pop toward the viewer inside a tilted card */
+.tilt .pop { transform: translateZ(28px); }
+.tilt .pop-sm { transform: translateZ(14px); }
+
+/* ============================================================
+   SCROLL REVEAL (paired with the useReveal hook)
+   ============================================================ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity var(--dur-slow) var(--ease-out) var(--reveal-delay, 0ms),
+              transform var(--dur-slow) var(--ease-out) var(--reveal-delay, 0ms);
+}
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.92) translateY(16px);
+  transition: opacity var(--dur-slow) var(--ease-out) var(--reveal-delay, 0ms),
+              transform var(--dur-slow) var(--ease-spring) var(--reveal-delay, 0ms);
+}
+.reveal-scale.is-visible { opacity: 1; transform: scale(1) translateY(0); }
+
+/* ============================================================
+   KEYFRAMES
+   ============================================================ */
+
+@keyframes mk-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes mk-fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes mk-pop-in {
+  0% { opacity: 0; transform: scale(0.6); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes mk-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes mk-shimmer {
+  from { background-position: -400px 0; }
+  to { background-position: 400px 0; }
+}
+
+@keyframes mk-pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(244, 208, 63, 0.55); }
+  100% { box-shadow: 0 0 0 14px rgba(244, 208, 63, 0); }
+}
+
+/* Route transition: each page eases in on navigation.
+   NOTE: fill-mode `both` leaves a persistent transform (translateY(0)), which
+   creates a stacking context. Give it a positive z-index so absolutely-
+   positioned overlays inside the page (e.g. the PLP filter dropdown) paint
+   above the footer, which is a later sibling. */
+.route-fade {
+  position: relative;
+  z-index: 1;
+  animation: mk-fade-up var(--dur-med) var(--ease-out) both;
+}
+
+/* ============================================================
+   SKELETONS
+   ============================================================ */
+
+.skeleton {
+  background: linear-gradient(90deg, #EFEDE6 25%, #F7F5EE 50%, #EFEDE6 75%);
+  background-size: 800px 100%;
+  animation: mk-shimmer 1.4s linear infinite;
+  border-radius: var(--radius-sm);
+}
+
+/* ============================================================
+   TOASTS
+   ============================================================ */
+
+.mk-toast-viewport {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  align-items: center;
+  pointer-events: none;
+}
+
+.mk-toast {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.8rem 1.4rem;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  color: var(--color-text-white);
+  font-size: 0.92rem;
+  font-weight: 500;
+  box-shadow: var(--shadow-xl);
+  animation: mk-toast-in var(--dur-med) var(--ease-spring) both;
+  pointer-events: auto;
+}
+.mk-toast.success { background: var(--color-primary); }
+.mk-toast.error { background: var(--color-red); }
+.mk-toast.leaving { animation: mk-toast-out var(--dur-med) var(--ease-out) both; }
+.mk-toast .mk-toast-icon { color: var(--color-secondary); }
+
+@keyframes mk-toast-in {
+  from { opacity: 0; transform: translateY(24px) scale(0.9); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes mk-toast-out {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(12px) scale(0.94); }
+}
+
+/* ============================================================
+   ACCESSIBILITY
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal, .reveal-scale { opacity: 1; transform: none; }
+  .tilt { transform: none !important; }
+}

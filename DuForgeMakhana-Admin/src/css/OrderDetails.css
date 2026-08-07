@@ -1,0 +1,440 @@
+/* src/css/OrderDetailsPage.css */
+
+/* ------------------------------------------------------
+   Utility Classes & Typography
+   ------------------------------------------------------ */
+.center {
+  text-align: center;
+  margin-top: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #374151;
+}
+
+.error {
+  color: #dc2626;
+  /* red-600 */
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+/* ------------------------------------------------------
+   Back Button
+   ------------------------------------------------------ */
+.back-btn {
+  display: inline-block;
+  margin: 1rem;
+  background: none;
+  border: none;
+  color: #3b82f6;
+  /* blue-500 */
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.2s ease-in-out;
+}
+
+.back-btn:hover {
+  color: #1d4ed8;
+  /* blue-700 */
+  text-decoration: underline;
+}
+
+/* ------------------------------------------------------
+   Container Sections
+   ------------------------------------------------------ */
+.order-info,
+.payment-breakdown,
+.order-products,
+.order-address,
+.order-actions,
+.order-tracking {
+  margin: 1.5rem 2rem;
+  padding: 1.25rem 1.5rem;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  /* gray-200 */
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ------------------------------------------------------
+   Order Info
+   ------------------------------------------------------ */
+.order-info h2 {
+  margin-bottom: 0.75rem;
+  font-size: 1.5rem;
+  color: #1f2937;
+  /* gray-800 */
+}
+
+.order-info p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  color: #4b5563;
+  /* gray-600 */
+}
+
+/* Status Dropdown */
+.status-select {
+  font-size: 1rem;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid #d1d5db;
+  /* gray-300 */
+  border-radius: 6px;
+  background-color: #f9fafb;
+  /* gray-50 */
+  color: #1f2937;
+  /* gray-800 */
+  transition: background-color 0.2s ease-in-out;
+}
+
+.status-select:disabled,
+.status-select.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ------------------------------------------------------
+   Section Headings
+   ------------------------------------------------------ */
+.payment-breakdown h3,
+.order-products h3,
+.order-address h3,
+.order-tracking h3 {
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+  color: #111827;
+  /* gray-900 */
+  border-bottom: 2px solid #e5e7eb;
+  /* gray-200 */
+  padding-bottom: 0.5rem;
+}
+
+/* ------------------------------------------------------
+   Payment Breakdown Details
+   ------------------------------------------------------ */
+.payment-breakdown div,
+.grand-total {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  color: #374151;
+  /* gray-700 */
+}
+
+.grand-total {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111827;
+  /* gray-900 */
+}
+
+/* ------------------------------------------------------
+   Products Grid
+   ------------------------------------------------------ */
+.products-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: start;
+}
+
+.product-cell {
+  background-color: #f3f4f6;
+  /* gray-100 */
+  border-radius: 6px;
+  padding: 0.75rem;
+  width: calc(100% / 3 - 1rem);
+  text-align: center;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.product-cell img {
+  width: 35%;
+  height: 120px;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+  background-color: #ffffff;
+  padding: 0;
+}
+
+.product-cell p {
+  margin: 0.25rem 0;
+  font-size: 0.95rem;
+  color: #374151;
+  /* gray-700 */
+}
+
+.order-product-item {
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ------------------------------------------------------
+   Enhanced Product Details List
+   ------------------------------------------------------ */
+.products-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.product-detail-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1.25rem;
+  transition: box-shadow 0.2s ease-in-out;
+  height: 100%;
+}
+
+.product-detail-card:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.product-image-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.product-detail-image {
+  width: 100%;
+  max-width: 250px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 6px;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+}
+
+.product-info-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.product-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 0.5rem 0;
+  text-align: center;
+}
+
+.product-details-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.product-detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.detail-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail-value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.detail-value.total-amount {
+  color: #059669;
+  font-size: 1.125rem;
+}
+
+.product-description {
+  margin-top: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.description-text {
+  margin: 0.5rem 0 0 0;
+  font-size: 0.95rem;
+  color: #4b5563;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.product-meta {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.meta-badge {
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 4px;
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.meta-badge.in-stock {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.meta-badge.out-of-stock {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+/* ------------------------------------------------------
+   Delivery Address
+   ------------------------------------------------------ */
+.order-address p {
+  margin: 0.4rem 0;
+  font-size: 1rem;
+  color: #4b5563;
+  /* gray-600 */
+}
+
+/* ------------------------------------------------------
+   Action Button
+   ------------------------------------------------------ */
+.order-actions {
+  text-align: center;
+}
+
+.invoice-btn {
+  padding: 0.6rem 1.2rem;
+  background-color: #10b981;
+  /* green-500 */
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.invoice-btn.disabled,
+.invoice-btn[disabled] {
+  background-color: #d1d5db;
+  /* gray-300 */
+  cursor: not-allowed;
+  opacity: 0.6;
+  box-shadow: none;
+}
+
+.invoice-btn:not(.disabled):hover {
+  background-color: #059669;
+  /* green-600 */
+  transform: translateY(-1px);
+}
+
+.invoice-btn:not(.disabled):active {
+  transform: translateY(1px);
+}
+
+/* ------------------------------------------------------
+   Order Tracking Section
+   ------------------------------------------------------ */
+.order-tracking {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+.tracking-input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.tracking-input-section label {
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.95rem;
+}
+
+.tracking-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: all 0.2s ease;
+}
+
+.tracking-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.tracking-note {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin: 0;
+  padding: 0.5rem;
+  background-color: #eff6ff;
+  border-left: 3px solid #3b82f6;
+  border-radius: 4px;
+}
+
+/* ------------------------------------------------------
+   Mobile / Responsive Adjustments
+   ------------------------------------------------------ */
+@media (max-width: 1024px) {
+  .product-cell {
+    width: calc(100% / 2 - 1rem);
+  }
+}
+
+@media (max-width: 640px) {
+
+  .order-info,
+  .payment-breakdown,
+  .order-products,
+  .order-address,
+  .order-actions,
+  .order-tracking {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .products-grid {
+    gap: 0.75rem;
+  }
+
+  .product-cell {
+    width: 100%;
+    padding: 0.5rem;
+  }
+
+  .invoice-btn {
+    width: 100%;
+    padding: 0.8rem 0;
+  }
+}

@@ -1,0 +1,256 @@
+/* ============================================================
+   FOOTER — warm cream canvas with brown / gold accents
+   ============================================================ */
+
+.footer {
+  position: relative;
+  background:
+    radial-gradient(1100px 320px at 50% 0%, rgba(217, 154, 43, 0.10), transparent 70%),
+    linear-gradient(180deg, var(--surface-soft) 0%, var(--background-secondary) 100%);
+  border-top: 1px solid var(--border-default);
+  padding: clamp(2.4rem, 5vw, 3.6rem) 5% 1.4rem;
+  color: var(--text-secondary);
+  overflow: hidden;
+}
+
+/* Gold hairline along the top edge */
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1000px, 92%);
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-saffron), transparent);
+}
+
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* ---------- Top: brand + link columns ---------- */
+.footer-top {
+  display: grid;
+  grid-template-columns: minmax(240px, 1.3fr) 2.7fr;
+  gap: clamp(2rem, 5vw, 4rem);
+}
+
+.footer-brand {
+  max-width: 340px;
+}
+.footer-logo-link { display: inline-flex; }
+.footer-logo {
+  height: 52px;
+  width: auto;
+}
+.footer-tagline {
+  margin: 1rem 0 1.4rem;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+.footer-social {
+  display: flex;
+  gap: 0.7rem;
+}
+.social-link {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+  background: var(--surface-primary);
+  color: var(--text-secondary);
+  font-size: 1rem;
+  text-decoration: none;
+  transition: transform var(--dur-fast) var(--ease-spring),
+              background var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-fast) var(--ease-out);
+}
+.social-link:hover {
+  background: var(--accent-saffron);
+  border-color: var(--accent-saffron);
+  color: #fff;
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: var(--shadow-gold);
+}
+
+/* ---------- Link columns ---------- */
+.footer-nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.8rem 1.4rem;
+}
+.footer-col { min-width: 0; }
+.footer-col summary {
+  position: relative;
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #7A4D24;
+  cursor: pointer;
+  list-style: none;
+  margin-bottom: 1rem;
+}
+.footer-col summary::-webkit-details-marker { display: none; }
+/* Chevron — only meaningful on mobile where columns collapse */
+.footer-col summary::after {
+  content: '';
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-70%) rotate(45deg);
+  opacity: 0;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.footer-col[open] summary::after { transform: translateY(-30%) rotate(225deg); }
+
+.footer-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.footer-col a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.88rem;
+  transition: color var(--dur-fast) var(--ease-out),
+              padding-left var(--dur-fast) var(--ease-out);
+}
+.footer-col a:hover {
+  color: var(--accent-terracotta);
+  padding-left: 0.4rem;
+}
+
+/* ---------- Contact strip ---------- */
+.footer-contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+.footer-contact-box {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.85rem 1.3rem;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--surface-primary);
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--dur-med) var(--ease-out),
+              transform var(--dur-med) var(--ease-out),
+              box-shadow var(--dur-med) var(--ease-out);
+}
+.footer-contact-box:hover {
+  border-color: var(--accent-saffron);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+.footer-contact-box svg { color: var(--accent-saffron); font-size: 1.15rem; }
+.footer-contact-box > span { display: flex; flex-direction: column; }
+.footer-contact-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+.footer-contact-value {
+  margin-top: 0.15rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  word-break: break-word;
+}
+
+/* ---------- Divider + bottom bar ---------- */
+.footer-divider {
+  border: none;
+  height: 1px;
+  background: var(--border-default);
+  margin: 1.8rem 0 1.2rem;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem 1.5rem;
+}
+.footer-copy {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+.footer-legal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.2rem;
+}
+.footer-legal a {
+  position: relative;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.footer-legal a:not(:last-child)::after {
+  content: '·';
+  position: absolute;
+  right: -0.75rem;
+  color: var(--border-strong);
+}
+.footer-legal a:hover { color: var(--accent-terracotta); }
+.footer-made {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+.footer-made span { color: var(--accent-terracotta); }
+
+/* ---------- Desktop: columns are static headings, not accordions ---------- */
+@media (min-width: 721px) {
+  .footer-col summary { pointer-events: none; }
+  .footer-col summary::after { display: none; }
+}
+
+/* ---------- Mobile: collapsible accordion columns ---------- */
+@media (max-width: 720px) {
+  .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-brand { max-width: none; text-align: center; }
+  .footer-social { justify-content: center; }
+  .footer-nav { grid-template-columns: 1fr; gap: 0; }
+  .footer-col {
+    border-bottom: 1px solid var(--border-default);
+    padding: 0.9rem 0;
+  }
+  .footer-col summary {
+    margin-bottom: 0;
+    padding-right: 1.5rem;
+    display: flex;
+    align-items: center;
+  }
+  .footer-col summary::after { opacity: 1; }
+  .footer-col[open] summary { margin-bottom: 0.9rem; }
+  .footer-contact-row { flex-direction: column; }
+  .footer-contact-box { justify-content: flex-start; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+}
